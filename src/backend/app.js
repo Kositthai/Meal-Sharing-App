@@ -31,40 +31,63 @@ app.get("/my-route", (req, res) => {
 });
 
 app.get("/future-meals", async (req, res) => {
-  const [futureMeals] = await knex.raw(
-    "SELECT meal.title, meal.when FROM meal WHERE meal.when > DATE(NOW());"
-  );
-  futureMeals.length != 0 ? res.json({ futureMeals }) : res.json([]);
+  try {
+    const [futureMeals] = await knex.raw(
+      "SELECT meal.title, meal.when FROM meal WHERE meal.when >= DATE(NOW());"
+    );
+    futureMeals.length != 0 ? res.json({ futureMeals }) : res.json([]);
+  } catch (e) {
+    res.send("Something went wrong, try again later");
+  }
 });
 
 app.get("/past-meals", async (req, res) => {
-  const [pastMeals] = await knex.raw(
-    "SELECT meal.title, meal.when FROM meal WHERE meal.when < DATE(NOW());"
-  );
-  pastMeals.length != 0 ? res.json({ pastMeals }) : res.json([]);
+  try {
+    const [pastMeals] = await knex.raw(
+      "SELECT meal.title, meal.when FROM meal WHERE meal.when < DATE(NOW());"
+    );
+    pastMeals.length != 0 ? res.json({ pastMeals }) : res.json([]);
+  } catch (e) {
+    res.send("Something went wrong, try again later");
+  }
 });
 
 app.get("/all-meals", async (req, res) => {
-  const [allMeals] = await knex.raw("SELECT * FROM meal ORDER BY meal.id ASC;");
-  allMeals.length != 0 ? res.json({ allMeals }) : res.json([]);
+  try {
+    const [allMeals] = await knex.raw(
+      "SELECT * FROM meal ORDER BY meal.id ASC;"
+    );
+    allMeals.length != 0 ? res.json({ allMeals }) : res.json([]);
+  } catch (e) {
+    res.send("Something went wrong, try again later");
+  }
 });
 
 app.get("/first-meal", async (req, res) => {
-  const [firstMeal] = await knex.raw(
-    "SELECT * FROM meal ORDER BY meal.id ASC LIMIT 1;"
-  );
-  firstMeal.length != 0
-    ? res.json(firstMeal[0])
-    : res.status(404).send("There are no meals");
+  try {
+    const [firstMeal] = await knex.raw(
+      "SELECT * FROM meal ORDER BY meal.id ASC LIMIT 1;"
+    );
+    lll;
+    firstMeal.length != 0
+      ? res.json(firstMeal[0])
+      : res.status(200).send("There are no meals");
+  } catch (e) {
+    res.send("Something went wrong, try again later");
+  }
 });
 
 app.get("/last-meal", async (req, res) => {
-  const [lastMeal] = await knex.raw(
-    "SELECT * FROM meal ORDER BY meal.id DESC LIMIT 1; "
-  );
-  lastMeal.length != 0
-    ? res.json(lastMeal[0])
-    : res.status(404).send("There are no meals");
+  try {
+    const [lastMeal] = await knex.raw(
+      "SELECT * FROM meal ORDER BY meal.id DESC LIMIT 1; "
+    );
+    lastMeal.length != 0
+      ? res.json(lastMeal[0])
+      : res.status(200).send("There are no meals");
+  } catch (e) {
+    res.send("Something went wrong, try again later");
+  }
 });
 
 if (process.env.API_PATH) {
