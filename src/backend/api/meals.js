@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
   try {
     const getMeals = await knex("meal").select("*");
     getMeals.length != 0
-      ? res.json(getReservationList)
+      ? res.json(getMeals)
       : res.status(404).send("No meals list");
   } catch (error) {
     res.status(500).send({ error: error });
