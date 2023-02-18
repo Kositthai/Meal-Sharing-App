@@ -4,6 +4,7 @@ const db = require("../database");
 
 router.use(express.json());
 
+
 // Adds a new meal to the database
 router.post("/", async (req, res) => {
   const mealInfo = req.body;
