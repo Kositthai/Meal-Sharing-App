@@ -102,28 +102,19 @@ router.get("/", toLowerCaseMiddleware, async (req, res) => {
 
   // AvailableReservations
   if ("availableReservations" in query) {
+    mealQuery = mealQuery
+    .select("meal.title", 
+    db.raw("(meal.max_reservation -  sum(reservation.number_of_guests)) as available_slot"))
+    .join("reservation", "meal.id", "=", "reservation.meal_id")
+    .groupBy("reservation.meal_id")
+
     if (availableReservations === "true") {
-      mealQuery = mealQuery
-        .select(
-          "meal.title",
-          db.raw(
-            "(meal.max_reservation -  sum(reservation.number_of_guests)) as available_slot"
-          )
-        )
-        .join("reservation", "meal.id", "=", "reservation.meal_id")
-        .groupBy("reservation.meal_id")
-        .having("available_slot", "!=", "0");
+      mealQuery = mealQuery.having("available_slot", "!=", "0")
+        
     } else if (availableReservations === "false") {
-      mealQuery = mealQuery
-        .select(
-          "meal.title",
-          db.raw(
-            "(meal.max_reservation -  sum(reservation.number_of_guests)) as available_slot"
-          )
-        )
-        .join("reservation", "meal.id", "=", "reservation.meal_id")
-        .groupBy("reservation.meal_id")
-        .having("available_slot", "=", "0");
+      mealQuery = mealQuery.having("available_slot", "=", "0")
+      console.log(mealQuery.toSQL())
+
     } else {
       return res.status(400).json({
         Error:
