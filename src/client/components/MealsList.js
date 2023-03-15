@@ -7,26 +7,27 @@ export default function MealList() {
   useEffect(() => {
     async function fetchData() {
       const data = await fetch(mealAPI);
-      const res = await data.json();
-      setMeals(res);
+      const response = await data.json();
+      setMeals(response);
     }
-    console.log(mealAPI);
+
     fetchData();
   }, []);
 
   return (
     <div>
-      <div>
-        {meals.map((item) => {
-          return (
-            <div key={item.id} style={{border: "1px solid", textAlign: "center"}}>
-              <p>{item.title}</p>
-              <p>{item.description}</p>
-              <p>{item.price} kr.</p>
-            </div>
-          );
-        })}
-      </div>
+      {meals.map((meal) => {
+        return (
+          <div
+            key={meal.id}
+            style={{ border: "1px solid", textAlign: "center" }}
+          >
+            <p>{meal.title}</p>
+            <p>{meal.description}</p>
+            <p>{meal.price} kr.</p>
+          </div>
+        );
+      })}
     </div>
   );
 }
