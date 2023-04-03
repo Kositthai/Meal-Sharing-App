@@ -1,0 +1,20 @@
+.footer-container {
+  position: relative;
+}
+
+.footer-icon-container {
+  display: flex;
+  justify-content: center;
+  top: 85%;
+  left: 80%;
+  position: absolute;
+}
+
+.footer-icon {
+  color: black;
+  padding: 0 1em;
+}
+
+.test {
+  color: rgb(165, 114, 42);
+}

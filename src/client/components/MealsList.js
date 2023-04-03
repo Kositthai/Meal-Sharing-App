@@ -1,13 +1,14 @@
-import React, { useContext } from "react";
-import Meal from "./Meal";
-import MealProvider from "./MealContext";
+import React from "react";
+import Footer from "./Footer";
+import AllMeals from "./AllMeals";
+import NavBar from "./Navbar";
 
 export default function MealList() {
   return (
-    <MealProvider>
-      <div>
-        <Meal />
-      </div>
-    </MealProvider>
+    <div>
+      <NavBar />
+      <AllMeals />
+      <Footer />
+    </div>
   );
 }

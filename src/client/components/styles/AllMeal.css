@@ -1,0 +1,51 @@
+.meal-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 2em;
+  width: 80%;
+  margin: 2.5em auto;
+}
+
+.meal-card {
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.meal-card:hover {
+  transform: scale(1.05);
+  transition: ease 0.3s;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+.meal-price-wrapper {
+  background: rgb(103, 202, 125);
+  margin-top: auto;
+}
+
+/* margin-top: auto will calcurate available space that has left and set it to margin-top
+      after margintop had set by taking on available space then now mealPrice will be push the the
+      bottom of the parent element
+  */
+
+.meal-price {
+  color: #000000;
+  font-weight: bolder;
+  text-align: end;
+  margin-right: 0.5em;
+}
+
+h3 {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande";
+  text-transform: uppercase;
+  text-align: center;
+}
+
+p {
+  padding-left: 0.5em;
+}

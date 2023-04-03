@@ -1,0 +1,13 @@
+.homepage-container {
+    text-align: center;
+    margin-top: 2em;
+    font-size: 1em;
+    animation: 2s blinker;
+    animation-iteration-count: 10;
+}
+
+@keyframes blinker {
+    60% {
+        opacity: 0;
+    }
+}

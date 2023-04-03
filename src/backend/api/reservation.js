@@ -7,7 +7,12 @@ router.use(express.json());
 // Returns all reservations
 router.get("/", async (req, res) => {
   try {
-    const getReservationList = await knex("reservation").select("*");
+    const getReservationList = await knex("reservation").select(
+      "reservation.*",
+      knex.raw(
+        "CONVERT_TZ(created_date, '+00:00', '+02:00') AS local_created_date"
+      )
+    );
     getReservationList.length != 0
       ? res.json(getReservationList)
       : res.status(404).send("No reservations list");
@@ -36,7 +41,14 @@ router.get("/:id", async (req, res) => {
   const id = parseInt(req.params.id);
   try {
     const getReservationById = await knex("reservation")
-      .select("*")
+      .select(
+        "reservation.id",
+        "reservation.created_date",
+        "reservation.meal_id",
+        knex.raw(
+          "CONVERT_TZ(created_date, '+00:00', '+02:00') AS local_created_date"
+        )
+      )
       .where({ id });
     getReservationById.length != 0
       ? res.json(getReservationById)

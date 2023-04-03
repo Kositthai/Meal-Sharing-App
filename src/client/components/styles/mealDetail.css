@@ -1,0 +1,40 @@
+.get-a-meal-h2 {
+  text-align: center;
+}
+
+body {
+  background-color: rgb(189, 205, 189);
+}
+
+.get-a-meal-image {
+  width: 80%;
+  box-shadow: 1px 3px 7px 0px rgba(84, 84, 84, 0.75);
+  -webkit-box-shadow: 1px 3px 7px 0px rgba(84, 84, 84, 0.75);
+  -moz-box-shadow: 1px 3px 7px 0px rgba(84, 84, 84, 0.75);
+}
+
+.a-meal-img-container {
+  display: flex;
+  justify-content: center;
+  margin: 2em;
+}
+
+.reservation-and-a-meal {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: rgb(240, 236, 236);
+  width: 50%;
+  margin: 5em auto;
+}
+
+.reservation-container {
+  margin: auto;
+}
+
+.get-a-meal-details {
+  margin-left: 2em;
+}
+
+.a-meal-container {
+  background-color: rgb(89, 144, 89);
+}

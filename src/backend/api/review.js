@@ -7,7 +7,12 @@ router.use(express.json());
 // Returns all reviews
 router.get("/", async (req, res) => {
   try {
-    const getAllReviews = await db("review").select("*");
+    const getAllReviews = await db("review").select(
+      "review.*",
+      db.raw(
+        "CONVERT_TZ(created_date, '+00:00', '+02:00') AS local_created_date"
+      )
+    );
     res.status(200).json(getAllReviews);
   } catch (error) {
     res.status(500).json({ Error: error });
@@ -63,3 +68,4 @@ router.delete("/:id", async (req, res) => {
 
 module.exports = router;
 
+// maybe need to create new endppoint for reservation with specific meal.id 
