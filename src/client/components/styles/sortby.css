@@ -1,0 +1,13 @@
+.sortby-container {
+  display: flex;
+  justify-content: flex-end;
+  margin: 3em;
+}
+
+.sortby-wrapper {
+  margin-right: 1em;
+}
+
+.sortby-placeholder {
+  text-align: center;
+}

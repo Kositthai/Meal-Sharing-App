@@ -195,7 +195,7 @@ router.get("/", toLowerCaseMiddleware, async (req, res) => {
 
   try {
     const meals = await mealQuery;
-    meals.length > 0 ? res.status(200).json(meals) : res.json("No data exist");
+    meals.length > 0 ? res.status(200).json(meals) : res.json([]);
   } catch (error) {
     res.status(500).json({ Error: error });
   }

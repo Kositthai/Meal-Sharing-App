@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { MealContext } from "./MealContext";
-import "./styles/mealDetail.css";
-import foodPic from "../../../public/spencer-davis-vJsj-hgOEG0-unsplash.jpg";
 import ReservationForm from "./ReservationForm";
+import foodPic from "/public/spencer-davis-vJsj-hgOEG0-unsplash.jpg";
+import "./styles/mealDetail.css";
 
 export default function MealDetail() {
   const {
@@ -21,7 +21,7 @@ export default function MealDetail() {
   const { id } = useParams();
 
   useEffect(() => {
-    if (meals) {
+    if (meals.length !== 0) {
       const mealID = meals.find((meal) => meal.id == Number(id));
       setIsIdExist(mealID);
     }
@@ -43,7 +43,6 @@ export default function MealDetail() {
   const result = new Date(date).toLocaleDateString("en-GB");
 
   return (
-    <div>
       <div className="reservation-and-a-meal">
         <div className="a-meal-container">
           <div className="a-meal-img-container">
@@ -73,6 +72,7 @@ export default function MealDetail() {
               </h4>
               <p> {result}</p>
             </div>
+            <p className="available-reservation-info">Available reservation {mealDetails.available_slot}</p>
           </div>
         </div>
 
@@ -87,6 +87,5 @@ export default function MealDetail() {
           )}
         </div>
       </div>
-    </div>
   );
 }
