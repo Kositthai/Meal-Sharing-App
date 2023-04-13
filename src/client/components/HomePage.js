@@ -38,4 +38,3 @@ export default function HomePage() {
     <p>Loading...</p>
   );
 }
-

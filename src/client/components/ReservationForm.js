@@ -68,7 +68,7 @@ export default function ReservationForm({ mealDetails, setIsPostSuccessful }) {
   return (
     <form className="meal-reservation" onSubmit={submitReservationHandler}>
       <h2>Meal Reservation</h2>
-      <div>
+      <div className="reservation-info">
         <label htmlFor="name">Name</label>
         <input
           type={"text"}
@@ -78,7 +78,7 @@ export default function ReservationForm({ mealDetails, setIsPostSuccessful }) {
           required
         />
       </div>
-      <div>
+      <div className="reservation-info">
         <label htmlFor="email">Email</label>
         <input
           type={"email"}
@@ -88,7 +88,7 @@ export default function ReservationForm({ mealDetails, setIsPostSuccessful }) {
           required
         />
       </div>
-      <div>
+      <div className="reservation-info">
         <label htmlFor="number_of_guests">Number of guest</label>
         <input
           type={"number"}
@@ -99,7 +99,7 @@ export default function ReservationForm({ mealDetails, setIsPostSuccessful }) {
           required
         />
       </div>
-      <div>
+      <div className="reservation-info">
         <label htmlFor="phone_number">Phone Number (+45) </label>
         <input
           type={"tel"}
@@ -110,8 +110,8 @@ export default function ReservationForm({ mealDetails, setIsPostSuccessful }) {
           minLength={8}
         />
       </div>
-
-      <button type="submit">Book Now</button>
+    
+      <button className="book-now-button" type="submit">Book Now</button>
     </form>
   );
 }

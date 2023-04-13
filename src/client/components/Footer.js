@@ -4,7 +4,12 @@ import "./styles/footer.css";
 export default function Footer() {
   return (
     <footer className="footer-container">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <div className="footer-icon-container">
+        <i className="fab fa-instagram footer-icon"></i>
+        <i className="fab fa-facebook-f footer-icon"></i>
+        <i className="fab fa-twitter footer-icon"></i>
+      </div>
+      <svg className="footer-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
         <path
           fill="rgba(69, 154, 87, 0.885)"
           fillOpacity="1"
@@ -16,12 +21,6 @@ export default function Footer() {
         320,40,320L0,320Z"
         ></path>
       </svg>
-      <div className="footer-icon-container">
-        <i className="fab fa-instagram footer-icon"></i>
-        <i className="fab fa-facebook-f footer-icon"></i>
-        <i className="fab fa-twitter footer-icon"></i>
-      </div>
     </footer>
   );
 }
-

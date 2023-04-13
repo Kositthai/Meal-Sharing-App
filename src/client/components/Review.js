@@ -2,32 +2,39 @@ import React, { useContext, useReducer, useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { MealContext } from "./MealContext";
 import { INITIAL_REVIEW_STATE, PostReducer } from "./PostReducer";
+import "../components/styles/review.css";
+let hadReservedMeal = false;
 
 export default function Review() {
   const { reservationDetails, getAReservationByID, meals, stars, setStars } = useContext(MealContext);
-  const [isIdExist, setIsIDMatched] = useState({});
+  const [isIdExist, setIsIdExist] = useState({});
   const [state, dispatch] = useReducer(PostReducer, INITIAL_REVIEW_STATE);
   const history = useHistory();
   const { id } = useParams();
-
   const reviewRate = [1, 2, 3, 4, 5];
-  let hadReservedMeal = false;
 
   useEffect(() => {
-    if (meals) {
+    if (meals.length !== 0) {
       const mealID = meals.find((meal) => meal.id === Number(id));
-      setIsIDMatched(mealID);
+      setIsIdExist(mealID);
+      console.log("meal is true");
     }
-
+    console.log(meals.length);
     if (isIdExist) {
       const fetchReservation = async (id) => {
-        const response = await getAReservationByID(id);
+        try {
+          const response = await getAReservationByID(id);
+          console.log("ID is exist");
+        } catch (error) {
+          console.log(error);
+        }
       };
       fetchReservation(id);
     } else {
       history.push("/");
+      console.log("ID not exist");
     }
-  }, [meals, id, isIdExist]);
+  }, [meals, isIdExist]);
 
   const submitReservationHandler = async (e) => {
     e.preventDefault();
@@ -82,56 +89,84 @@ export default function Review() {
   };
 
   return (
-    <section>
-      <h3>Write a review</h3>
-      <form onSubmit={(e) => submitReservationHandler(e)}>
-        <label htmlFor="name">name</label>
-        <input
-          id="name"
-          type="text"
-          value={state.name}
-          onChange={(e) => changeInputHandler(e)}
-          required
-        />
+    <section className="review-container">
+      <div className="review-wrapper">
+        <h3>Write a review</h3>
+        <form
+          onSubmit={(e) => submitReservationHandler(e)}
+          className="review-form"
+        >
+          <div className="review-information">
+            <label htmlFor="name">Name</label>
+            <input
+              id="name"
+              type="text"
+              value={state.name}
+              onChange={(e) => changeInputHandler(e)}
+              required
+              className="review-input"
+            />
+          </div>
 
-        <label htmlFor="email">email</label>
-        <input
-          id="email"
-          type="email"
-          value={state.email}
-          onChange={(e) => changeInputHandler(e)}
-          required
-        />
+          <div className="review-information">
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              value={state.email}
+              onChange={(e) => changeInputHandler(e)}
+              required
+              className="review-input"
+            />
+          </div>
 
-        <label htmlFor="subject">subject</label>
-        <input
-          id="subject"
-          type="text"
-          maxLength={30}
-          value={state.subject}
-          onChange={(e) => changeInputHandler(e)}
-        />
+          <div className="review-information">
+            <label htmlFor="subject">Subject</label>
+            <input
+              id="subject"
+              type="text"
+              maxLength={30}
+              value={state.subject}
+              onChange={(e) => changeInputHandler(e)}
+              className="review-input"
+            />
+          </div>
+          <div className="review-information">
+            <label htmlFor="star">Rate</label>
+            <div className="review-input">
+              {reviewRate.map((star, index) => {
+                return (
+                  <i
+                    id="star"
+                    className={
+                      stars >= star
+                        ? "far fa-star star-selected"
+                        : "far fa-star"
+                    }
+                    key={index}
+                    onClick={() => setStars(star)}
+                  ></i>
+                );
+              })}
+            </div>
+          </div>
 
-        {reviewRate.map((star, index) => {
-          return (
-            <i
-              className="far fa-star"
-              key={index}
-              onClick={() => setStars(star)}
-            ></i>
-          );
-        })}
-        <label htmlFor="message">message</label>
+          <div className="review-information">
+            <label htmlFor="message">Message</label>
+            <textarea
+              className="review-input"
+              id="message"
+              value={state.message}
+              onChange={(e) => changeInputHandler(e)}
+              maxLength={80}
+            ></textarea>
+          </div>
 
-        <textarea
-          id="message"
-          value={state.message}
-          onChange={(e) => changeInputHandler(e)}
-          maxLength={80}
-        ></textarea>
-
-        <button type="submit">Submit</button>
-      </form>
+          <button className="review-submit-button" type="submit">
+            Submit
+          </button>
+        </form>
+      </div>
     </section>
   );
 }

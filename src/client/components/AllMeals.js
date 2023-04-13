@@ -1,32 +1,45 @@
-import { MealContext } from "./MealContext";
 import React, { useContext } from "react";
-import "./styles/AllMeal.css";
-import foodPics from "../../../public/foodPics.jpg";
+import { MealContext } from "./MealContext";
 import { Link } from "react-router-dom";
+import foodPics from "/public/foodPics.jpg";
+import NotFoundData from "./NotFoundData";
+import SortBy from "./SortBy";
+import "./styles/allMeal.css";
 
 export default function AllMeals() {
-  const { meals } = useContext(MealContext);
+  const { meals, isFound } = useContext(MealContext);
 
-  return (
-    <div className="meal-container">
-      {meals?.map((meal) => {
-        return (
-          <div key={meal.id} className="meal-card">
-            <div>
-              <img src={foodPics} alt="foodSamplePic" />
+  return isFound ? (
+    <>
+      <SortBy />
+      <div className="meal-container">
+        {meals?.map((meal) => {
+          return (
+            <div key={meal.id} className="meal-card">
+              <div>
+                <img src={foodPics} alt="foodSamplePic" />
+              </div>
+              <div className="meal-des-wrapper">
+                <h3>{meal.title}</h3>
+                <p>{meal.description}</p>
+              </div>
+              <div className="meal-price-wrapper">
+                <p className="meal-price">{meal.price} kr.</p>
+              </div>
+              <div className="book-reservation-button-wrapper">
+                <button className="book-reservation-button">
+                  <Link to={`/meals/${meal.id}`}>Book</Link>
+                </button>
+                <button className="book-review-button">
+                  <Link to={`/meals/${meal.id}/review`}>Review</Link>
+                </button>
+              </div>
             </div>
-            <div>
-              <h3>{meal.title}</h3>
-              <p>{meal.description}</p>
-            </div>
-            <div className="meal-price-wrapper">
-              <p className="meal-price">{meal.price} kr.</p>
-            </div>
-            <Link to={`/meals/${meal.id}`}>Book</Link>       
-            <Link to={`/meals/${meal.id}/review`}>Review</Link>
-          </div>
-        );
-      })}
-    </div>
+          );
+        })}
+      </div>
+    </>
+  ) : (
+    <NotFoundData />
   );
 }

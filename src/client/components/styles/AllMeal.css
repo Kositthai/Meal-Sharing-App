@@ -26,6 +26,7 @@ img {
 .meal-price-wrapper {
   background: rgb(103, 202, 125);
   margin-top: auto;
+  padding: 1em;
 }
 
 /* margin-top: auto will calcurate available space that has left and set it to margin-top
@@ -48,4 +49,20 @@ h3 {
 
 p {
   padding-left: 0.5em;
+}
+
+.book-reservation-button,
+.book-review-button {
+  padding: 1em;
+  background: rgb(240, 183, 75);
+  width: 100%;
+  border: 1px solid white;
+}
+
+.book-reservation-button-wrapper {
+  display: flex;
+}
+
+.meal-des-wrapper {
+  padding: 2em 2em;
 }
