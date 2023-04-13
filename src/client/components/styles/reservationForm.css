@@ -1,0 +1,22 @@
+.reservation-form-phone {
+  width: 50px;
+}
+
+.meal-reservation {
+  margin-left: 2em;
+}
+
+.reservation-info {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1em;
+}
+
+.book-now-button {
+  background-color: rgb(89, 144, 89);
+  padding: 1em;
+  margin-top: 1em;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}

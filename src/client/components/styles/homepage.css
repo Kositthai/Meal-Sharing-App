@@ -1,0 +1,16 @@
+i {
+  font-size: 2em;
+}
+
+li {
+  text-align: center;
+  padding: 1em;
+}
+
+ul {
+  margin: 3em 0;
+}
+
+.link-to-page {
+  text-align: center;
+}

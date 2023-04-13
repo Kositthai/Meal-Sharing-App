@@ -4,7 +4,6 @@ const db = require("../database");
 
 router.use(express.json());
 
-
 // Adds a new meal to the database
 router.post("/", async (req, res) => {
   const mealInfo = req.body;
@@ -23,7 +22,16 @@ router.post("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   const id = parseInt(req.params.id);
   try {
-    const getMealById = await db("meal").select("*").where({ id });
+    const getMealById = await db("meal")
+      .select(
+        "meal.*",
+        db.raw(
+          "(meal.max_reservation -  sum(reservation.number_of_guests)) as available_slot"
+        )
+      )
+      .join("reservation", "meal.id", "=", "reservation.meal_id")
+      .groupBy("reservation.meal_id")
+      .where({ "meal.id": id });
     getMealById.length != 0
       ? res.json(getMealById)
       : res.status(404).send(`No meals available with this ${id}`);
@@ -104,18 +112,21 @@ router.get("/", toLowerCaseMiddleware, async (req, res) => {
   // AvailableReservations
   if ("availableReservations" in query) {
     mealQuery = mealQuery
-    .select("meal.title", 
-    db.raw("(meal.max_reservation -  sum(reservation.number_of_guests)) as available_slot"))
-    .join("reservation", "meal.id", "=", "reservation.meal_id")
-    .groupBy("reservation.meal_id")
+      .select(
+        "meal.id",
+        "meal.title",
+        db.raw(
+          "(meal.max_reservation -  sum(reservation.number_of_guests)) as available_slot"
+        )
+      )
+      .join("reservation", "meal.id", "=", "reservation.meal_id")
+      .groupBy("reservation.meal_id");
 
     if (availableReservations === "true") {
-      mealQuery = mealQuery.having("available_slot", "!=", "0")
-        
+      mealQuery = mealQuery.having("available_slot", ">", "0");
     } else if (availableReservations === "false") {
-      mealQuery = mealQuery.having("available_slot", "=", "0")
-      console.log(mealQuery.toSQL())
-
+      mealQuery = mealQuery.having("available_slot", "<=", "0");
+      console.log(mealQuery.toSQL());
     } else {
       return res.status(400).json({
         Error:
@@ -184,7 +195,7 @@ router.get("/", toLowerCaseMiddleware, async (req, res) => {
 
   try {
     const meals = await mealQuery;
-    meals.length > 0 ? res.status(200).json(meals) : res.json("No data exist");
+    meals.length > 0 ? res.status(200).json(meals) : res.json([]);
   } catch (error) {
     res.status(500).json({ Error: error });
   }
@@ -194,6 +205,14 @@ router.get("/:meal_id/reviews", async (req, res) => {
   const meal_id = parseInt(req.params.meal_id);
   try {
     const reviewById = await db("meal")
+      .select(
+        "meal.*",
+        "review.created_date",
+        "review.id AS review_id",
+        db.raw(
+          "CONVERT_TZ(review.created_date, '+00:00', '+02:00') AS local_review_created_date"
+        )
+      )
       .join("review", "review.meal_id", "=", "meal.id")
       .where({ meal_id });
     res.json(reviewById);
@@ -202,5 +221,16 @@ router.get("/:meal_id/reviews", async (req, res) => {
   }
 });
 
-module.exports = router;
+router.get("/:meal_id/reservations", async (req, res) => {
+  const meal_id = parseInt(req.params.meal_id);
+  try {
+    const reservationById = await db("meal")
+      .join("reservation", "reservation.meal_id", "=", "meal.id")
+      .where({ meal_id });
+    res.json(reservationById);
+  } catch (error) {
+    res.status(500).json({ error });
+  }
+});
 
+module.exports = router;
