@@ -17,14 +17,12 @@ export default function Review() {
     if (meals.length !== 0) {
       const mealID = meals.find((meal) => meal.id === Number(id));
       setIsIdExist(mealID);
-      console.log("meal is true");
     }
-    console.log(meals.length);
+
     if (isIdExist) {
       const fetchReservation = async (id) => {
         try {
           const response = await getAReservationByID(id);
-          console.log("ID is exist");
         } catch (error) {
           console.log(error);
         }
@@ -32,7 +30,6 @@ export default function Review() {
       fetchReservation(id);
     } else {
       history.push("/");
-      console.log("ID not exist");
     }
   }, [meals, isIdExist]);
 
