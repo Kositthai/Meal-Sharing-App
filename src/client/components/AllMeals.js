@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import foodPics from "/public/foodPics.jpg";
 import NotFoundData from "./NotFoundData";
 import SortBy from "./SortBy";
-import "../../client/components/styles/allMeal.css";
+import "./styles/allMeals.css";
 
 export default function AllMeals() {
   const { meals, isFound } = useContext(MealContext);
