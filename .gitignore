@@ -46,3 +46,4 @@ dist/
 package-lock.json
 
 note.txt
+.vercel
