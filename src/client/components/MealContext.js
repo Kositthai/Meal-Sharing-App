@@ -36,7 +36,7 @@ export default function MealProvider({ children }) {
     const fetchMealByTitle = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/meals?title=${text}`
+          `/api/meals?title=${text}`
         );
         const data = await response.json();
         setMeals(data);
@@ -52,7 +52,7 @@ export default function MealProvider({ children }) {
     const fetchSortedBy = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/meals?sortKey=${selectSortValue}&sortDir=${isSortedByDesc}`
+          `/api/meals?sortKey=${selectSortValue}&sortDir=${isSortedByDesc}`
         );
         const data = await response.json();
         setMeals(data);
