@@ -18,10 +18,11 @@
   background-color: rgb(240, 236, 236);
   width: 50%;
   margin: 5em auto;
+  height: 100%;
 }
 
 .reservation-container {
-  margin: auto;
+  margin: auto 3em;
 }
 
 .get-a-meal-details {
@@ -36,4 +37,119 @@
 .available-reservation-info {
   margin: 1em;
   color: white;
+}
+
+.msg-fully-booked {
+  text-align: center;
+  font-family: "Prata", serif;
+  font-size: 1.2em;
+}
+
+h4 {
+  margin-bottom: 1em;
+}
+
+.what-would-you-get {
+  margin: 1.5em;
+}
+
+.fa-map-marker-alt,
+.fa-tag,
+.fa-calendar {
+  font-size: 1.5em;
+}
+
+@media screen and (max-width: 1366px) {
+  .reservation-and-a-meal {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .subtitle-para {
+    font-size: 1.5em;
+  }
+
+  .a-meal-container {
+    display: block;
+    background-color: whitesmoke;
+  }
+
+  .reservation-and-a-meal {
+    display: block;
+    background-color: whitesmoke;
+    width: 80%;
+  }
+
+  .get-a-meal-image {
+    width: 100%;
+  }
+
+  .a-meal-img-container {
+    margin: 0 0 2em 0;
+  }
+
+  .meal-details-group {
+    display: flex;
+    justify-content: center;
+  }
+
+  .get-a-meal-details {
+    text-align: center;
+    background: rgba(29, 138, 27, 0.412);
+    border-radius: 10%;
+    margin: 1em;
+    padding: 4%;
+  }
+
+  .available-reservation-info {
+    color: black;
+    font-weight: bolder;
+  }
+
+  .what-would-you-get {
+    background: none;
+    text-align: left;
+  }
+
+  .what-would-you-get-msg {
+    font-size: 1em;
+  }
+
+  .reservation-container {
+    margin: 0;
+  }
+
+  .available-reservation-info {
+    font-size: 0.7em;
+    color: rgb(22, 25, 215);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .meal-details-group {
+    flex-direction: column;
+  }
+
+  .get-a-meal-details {
+    border-radius: 2em;
+    padding: 0;
+    margin: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  h4 {
+    margin: 0;
+    font-size: 0.7em;
+  }
+
+  .meal-details-para {
+    font-size: 0.7em;
+  }
+
+  .what-would-you-get {
+    text-align: center;
+  }
 }

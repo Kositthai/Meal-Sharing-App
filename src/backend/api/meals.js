@@ -26,15 +26,16 @@ router.get("/:id", async (req, res) => {
       .select(
         "meal.*",
         db.raw(
-          "(meal.max_reservation -  sum(reservation.number_of_guests)) as available_slot"
+          "COALESCE((meal.max_reservation -  sum(reservation.number_of_guests)), meal.max_reservation) as available_slot"
         )
       )
-      .join("reservation", "meal.id", "=", "reservation.meal_id")
+      .leftJoin("reservation", "meal.id", "=", "reservation.meal_id")
       .groupBy("reservation.meal_id")
       .where({ "meal.id": id });
-    getMealById.length != 0
-      ? res.json(getMealById)
-      : res.status(404).send(`No meals available with this ${id}`);
+
+      getMealById.length != 0
+        ? res.json(getMealById)
+        : res.status(404).send(`No meals available with this ${id}`);
   } catch (error) {
     res.status(500).send({ error: error });
     throw error;

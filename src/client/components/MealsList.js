@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import Footer from "./Footer";
 import AllMeals from "./AllMeals";
 import NavBar from "./Navbar";
+import { MealContext } from "./MealContext";
 
 export default function MealList() {
+  const { isFound } = useContext(MealContext);
+
   return (
-    <div>
+    <div className="meal-list">
       <NavBar />
       <AllMeals />
-      <Footer />
+      {isFound ? <Footer /> : null}
     </div>
   );
 }

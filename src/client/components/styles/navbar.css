@@ -1,4 +1,4 @@
-.navbar-ul {
+.navbar-pc-version {
   background-color: rgb(151, 227, 168);
   display: flex;
   justify-content: space-evenly;
@@ -6,8 +6,13 @@
   margin: 0;
 }
 
+.navbar-mobile-version {
+  display: inline;
+}
+
 .navbar-title {
   padding: 0 3em;
+  text-align: center;
 }
 
 .logo {
@@ -16,4 +21,30 @@
   justify-content: center;
   padding: 0.3em 0;
   margin: 0;
+}
+
+.hamburger {
+  display: none;
+}
+
+.burger {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background-color: #101010;
+}
+
+@media screen and (max-width: 600px) {
+  .navbar-title {
+    font-size: 0.8em;
+  }
+
+  .hamburger {
+    display: block;
+    float: right;
+    margin-right: 0.5em;
+  }
 }

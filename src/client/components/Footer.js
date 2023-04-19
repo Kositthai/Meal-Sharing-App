@@ -9,7 +9,11 @@ export default function Footer() {
         <i className="fab fa-facebook-f footer-icon"></i>
         <i className="fab fa-twitter footer-icon"></i>
       </div>
-      <svg className="footer-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <svg
+        className="footer-svg"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1440 320"
+      >
         <path
           fill="rgba(69, 154, 87, 0.885)"
           fillOpacity="1"

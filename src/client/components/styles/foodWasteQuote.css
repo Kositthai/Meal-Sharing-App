@@ -1,12 +1,13 @@
 .subtitle-para {
   position: absolute;
-  top: 40%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: whitesmoke;
   font-size: 2em;
   font-family: "Caveat", cursive;
   width: 70%;
+  text-align: center;
 }
 
 .subtitle-container {
@@ -20,4 +21,10 @@
   height: 30em;
   opacity: 0.9;
   filter: brightness(0.7);
+}
+
+@media screen and (max-width: 768px) {
+  .subtitle-para {
+    font-size: 1.5em;
+  }
 }

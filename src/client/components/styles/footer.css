@@ -5,7 +5,7 @@
 .footer-icon-container {
   display: flex;
   position: absolute;
-  bottom: 0;
+  bottom: 2em;
   right: 0;
   z-index: 10;
 }
@@ -13,4 +13,14 @@
 .footer-icon {
   color: black;
   padding: 0 1em;
+}
+
+@media screen and (max-width: 768px) {
+  .footer-icon {
+    font-size: 1.2em;
+  }
+
+  .footer-icon-container {
+    bottom: 0.9em;
+  }
 }

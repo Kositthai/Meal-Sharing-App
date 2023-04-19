@@ -2,7 +2,7 @@ i {
   font-size: 2em;
 }
 
-li {
+.meal-title-partial {
   text-align: center;
   padding: 1em;
 }
@@ -13,4 +13,11 @@ ul {
 
 .link-to-page {
   text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .meal-title-partial,
+  .view-more {
+    font-size: 0.7em;
+  }
 }

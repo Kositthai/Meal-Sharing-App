@@ -19,7 +19,7 @@ export default function ReservationForm({ mealDetails, setIsPostSuccessful }) {
 
     body.number_of_guests <= mealDetails.available_slot
       ? (availableSlotCovered = true)
-      : alert("Available slot not over number of guests");
+      : alert("Available meals is not cover the number of guests that you trying to book!");
 
     if (availableSlotCovered) {
       try {
@@ -67,9 +67,11 @@ export default function ReservationForm({ mealDetails, setIsPostSuccessful }) {
 
   return (
     <form className="meal-reservation" onSubmit={submitReservationHandler}>
-      <h2>Meal Reservation</h2>
+      <h2 className="meal-reservation-header">Meal Reservation</h2>
       <div className="reservation-info">
-        <label htmlFor="name">Name</label>
+        <label className="label-form" htmlFor="name">
+          Name
+        </label>
         <input
           type={"text"}
           id="name"
@@ -79,7 +81,9 @@ export default function ReservationForm({ mealDetails, setIsPostSuccessful }) {
         />
       </div>
       <div className="reservation-info">
-        <label htmlFor="email">Email</label>
+        <label className="label-form" htmlFor="email">
+          Email
+        </label>
         <input
           type={"email"}
           id="email"
@@ -89,7 +93,9 @@ export default function ReservationForm({ mealDetails, setIsPostSuccessful }) {
         />
       </div>
       <div className="reservation-info">
-        <label htmlFor="number_of_guests">Number of guest</label>
+        <label className="label-form" htmlFor="number_of_guests">
+          Number of guest
+        </label>
         <input
           type={"number"}
           id="number_of_guests"
@@ -100,7 +106,9 @@ export default function ReservationForm({ mealDetails, setIsPostSuccessful }) {
         />
       </div>
       <div className="reservation-info">
-        <label htmlFor="phone_number">Phone Number (+45) </label>
+        <label className="label-form" htmlFor="phone_number">
+          Phone Number (+45){" "}
+        </label>
         <input
           type={"tel"}
           id="phone_number"
@@ -110,8 +118,11 @@ export default function ReservationForm({ mealDetails, setIsPostSuccessful }) {
           minLength={8}
         />
       </div>
-    
-      <button className="book-now-button" type="submit">Book Now</button>
+      <div className="book-now-button-wrapper">
+        <button className="book-now-button" type="submit">
+          Book Now
+        </button>
+      </div>
     </form>
   );
 }
