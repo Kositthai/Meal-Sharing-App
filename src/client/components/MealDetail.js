@@ -4,7 +4,6 @@ import { MealContext } from "./MealContext";
 import ReservationForm from "./ReservationForm";
 import foodPic from "/public/spencer-davis-vJsj-hgOEG0-unsplash.jpg";
 import "./styles/mealDetail.css";
-import Navbar from "./Navbar";
 
 export default function MealDetail() {
   const {
@@ -44,8 +43,6 @@ export default function MealDetail() {
   const result = new Date(date).toLocaleDateString("en-GB");
 
   return (
-    <>
-      {/* <Navbar /> */}
       <div className="reservation-and-a-meal">
         <div className="a-meal-container">
           <div className="a-meal-img-container">
@@ -94,6 +91,5 @@ export default function MealDetail() {
           )}
         </div>
       </div>
-    </>
   );
 }
