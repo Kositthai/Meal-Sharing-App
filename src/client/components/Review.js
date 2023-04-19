@@ -3,6 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { MealContext } from "./MealContext";
 import { INITIAL_REVIEW_STATE, PostReducer } from "./PostReducer";
 import "../components/styles/review.css";
+import Navbar from "./Navbar"; 
 let hadReservedMeal = false;
 
 export default function Review() {
@@ -87,6 +88,8 @@ export default function Review() {
   };
 
   return (
+    <>
+    <Navbar />
     <section className="review-container">
       <div className="review-wrapper">
         <h3>Write a review</h3>
@@ -166,5 +169,6 @@ export default function Review() {
         </form>
       </div>
     </section>
+    </>
   );
 }
