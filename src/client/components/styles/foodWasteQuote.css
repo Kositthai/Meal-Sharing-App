@@ -1,6 +1,6 @@
 .subtitle-para {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: whitesmoke;
@@ -26,5 +26,15 @@
 @media screen and (max-width: 768px) {
   .subtitle-para {
     font-size: 1.5em;
+    margin-bottom: 1em;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .subtitle-para {
+    width: 85%;
+    margin: 0;
+   top: 50%;
+  }
+}
+
