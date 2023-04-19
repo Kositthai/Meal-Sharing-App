@@ -11,3 +11,14 @@
 .sortby-placeholder {
   text-align: center;
 }
+
+@media screen and (max-width: 600px) {
+  .fa-sort-amount-up,
+  .fa-sort-amount-down {
+    font-size: 1em;
+  }
+
+  .sortby-container {
+    margin: 1.5em 1em;
+  }
+}

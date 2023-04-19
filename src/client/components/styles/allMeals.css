@@ -1,6 +1,6 @@
 .meal-container {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: repeat(3, 1fr);
   gap: 2em;
   width: 80%;
   margin: 2.5em auto;
@@ -26,7 +26,7 @@ img {
 .meal-price-wrapper {
   background: rgb(103, 202, 125);
   margin-top: auto;
-  padding: 1em;
+  padding: 0.5em;
 }
 
 /* margin-top: auto will calcurate available space that has left and set it to margin-top
@@ -56,7 +56,11 @@ p {
   padding: 1em;
   background: rgb(240, 183, 75);
   width: 100%;
-  border: 1px solid white;
+  border: none;
+}
+
+.book-reservation-button {
+  border-right: 1px solid white;
 }
 
 .book-reservation-button-wrapper {
@@ -65,4 +69,16 @@ p {
 
 .meal-des-wrapper {
   padding: 2em 2em;
+}
+
+@media screen and (max-width: 768px) {
+  .meal-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .meal-container {
+    grid-template-columns: 1fr;
+  }
 }

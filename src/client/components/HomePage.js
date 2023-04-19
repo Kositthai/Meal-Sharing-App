@@ -18,14 +18,14 @@ export default function HomePage() {
       <ul>
         {meals.slice(0, meals.length - 2).map((meal) => {
           return (
-            <li key={meal.id}>
+            <li className="meal-title-partial" key={meal.id}>
               <Link to={`meals/${meal.id}`}>{meal.title}</Link>
             </li>
           );
         })}
       </ul>
       <div className="link-to-page">
-        <Link to={"/meals"}>
+        <Link to={"/meals"} className="view-more">
           View More
           <br />
           <br />

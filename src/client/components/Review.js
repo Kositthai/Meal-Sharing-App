@@ -6,7 +6,8 @@ import "../components/styles/review.css";
 let hadReservedMeal = false;
 
 export default function Review() {
-  const { reservationDetails, getAReservationByID, meals, stars, setStars } = useContext(MealContext);
+  const { reservationDetails, getAReservationByID, meals, stars, setStars } =
+    useContext(MealContext);
   const [isIdExist, setIsIdExist] = useState({});
   const [state, dispatch] = useReducer(PostReducer, INITIAL_REVIEW_STATE);
   const history = useHistory();

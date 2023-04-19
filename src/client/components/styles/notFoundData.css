@@ -1,10 +1,10 @@
 .sad-face-sticker {
-  width: 10%;
+  width: 20%;
   display: block;
   margin: 1em auto;
 }
 
 .not-found-message {
-  margin-top: 2em;
+  margin: 2em 1em;
   text-align: center;
 }

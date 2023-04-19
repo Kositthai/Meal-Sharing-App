@@ -4,6 +4,7 @@ import { MealContext } from "./MealContext";
 import ReservationForm from "./ReservationForm";
 import foodPic from "/public/spencer-davis-vJsj-hgOEG0-unsplash.jpg";
 import "./styles/mealDetail.css";
+import Navbar from "./Navbar";
 
 export default function MealDetail() {
   const {
@@ -43,6 +44,8 @@ export default function MealDetail() {
   const result = new Date(date).toLocaleDateString("en-GB");
 
   return (
+    <>
+      {/* <Navbar /> */}
       <div className="reservation-and-a-meal">
         <div className="a-meal-container">
           <div className="a-meal-img-container">
@@ -50,29 +53,33 @@ export default function MealDetail() {
           </div>
           <div>
             <h2 className="get-a-meal-h2">{mealDetails.title}</h2>
-            <div className="get-a-meal-details">
-              <h4>What you could get</h4>
+            <div className="what-would-you-get">
+              <h4 className="what-would-you-get-msg">What would you get</h4>
               <p>{mealDetails.description}</p>
             </div>
-            <div className="get-a-meal-details">
-              <h4>
-                <i className="fas fa-map-marker-alt"></i> Location
-              </h4>
-              <p>{mealDetails.location}</p>
+            <div className="meal-details-group">
+              <div className="get-a-meal-details">
+                <h4>
+                  <i className="fas fa-map-marker-alt"></i> Location
+                </h4>
+                <p className="meal-details-para">{mealDetails.location}</p>
+              </div>
+              <div className="get-a-meal-details">
+                <h4>
+                  <i className="fas fa-tag"></i> Price
+                </h4>
+                <p className="meal-details-para">{mealDetails.price} kr.</p>
+              </div>
+              <div className="get-a-meal-details">
+                <h4>
+                  <i className="far fa-calendar"></i> Collect
+                </h4>
+                <p className="meal-details-para"> {result}</p>
+              </div>
             </div>
-            <div className="get-a-meal-details">
-              <h4>
-                <i className="fas fa-map-marker-alt"></i> Price
-              </h4>
-              <p>{mealDetails.price} kr.</p>
-            </div>
-            <div className="get-a-meal-details">
-              <h4>
-                <i className="far fa-calendar"></i> Collect
-              </h4>
-              <p> {result}</p>
-            </div>
-            <p className="available-reservation-info">Available reservation {mealDetails.available_slot}</p>
+            <p className="available-reservation-info">
+              Available reservation {mealDetails.available_slot}
+            </p>
           </div>
         </div>
 
@@ -83,9 +90,10 @@ export default function MealDetail() {
               setIsPostSuccessful={setIsPostSuccessful}
             />
           ) : (
-            <p>This meal is fully booked</p>
+            <p className="msg-fully-booked">This meal is fully booked</p>
           )}
         </div>
       </div>
+    </>
   );
 }

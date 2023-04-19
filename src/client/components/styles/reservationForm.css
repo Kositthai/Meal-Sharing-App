@@ -20,3 +20,36 @@
   border: none;
   cursor: pointer;
 }
+
+.label-form {
+  margin-bottom: 0.3em;
+}
+
+@media screen and (max-width: 768px) {
+  .meal-reservation-header {
+    padding-top: 2em;
+    font-size: 1.5em;
+    width: 100%;
+    text-align: center;
+  }
+
+  .book-now-button {
+    margin-bottom: 2em;
+    background: rgba(29, 138, 27, 0.412);
+    color: black;
+  }
+
+  .meal-reservation {
+    margin: 0;
+    background-color: whitesmoke;
+  }
+
+  .reservation-info {
+    width: 70%;
+    margin: 1em auto;
+  }
+
+  .book-now-button-wrapper {
+    text-align: center;
+  }
+}

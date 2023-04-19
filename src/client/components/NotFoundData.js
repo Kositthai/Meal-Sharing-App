@@ -10,8 +10,11 @@ export default function NotFoundData() {
       <h1 className="not-found-message">
         Sorry! Can't find meal title under search {text}
       </h1>
-      <img className="sad-face-sticker" src={sadFaceSticker} alt="notFoundSadFacePic"/>
+      <img
+        className="sad-face-sticker"
+        src={sadFaceSticker}
+        alt="notFoundSadFacePic"
+      />
     </div>
   );
 }
-

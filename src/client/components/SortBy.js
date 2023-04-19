@@ -4,11 +4,13 @@ import "../components/styles/sortby.css";
 
 export default function SortBy() {
   const sortedList = ["Price", "Max_Reservation", "When"];
-  const { setIsDesc, setSelectSortValue, iconClassName } = useContext(MealContext);
+  const { setIsDesc, setSelectSortValue, iconClassName } =
+    useContext(MealContext);
 
   return (
     <div className="sortby-container">
-      <select className="sortby-wrapper"
+      <select
+        className="sortby-wrapper"
         id="sortby"
         defaultValue={""}
         onChange={(e) => setSelectSortValue(e.target.value)}
@@ -25,7 +27,7 @@ export default function SortBy() {
         })}
       </select>
       <i
-      className={iconClassName}
+        className={iconClassName}
         onClick={() => setIsDesc((previous) => !previous)}
       ></i>
     </div>
